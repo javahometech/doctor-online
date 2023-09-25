@@ -19,11 +19,17 @@ pipeline{
             }
         }
         stage("Deploy To Test"){
+            when {
+                expression { params.envName == "test" }
+            }
             steps{
                 echo "Deploy to test"
             }
         }
         stage("Deploy To Prod"){
+            when {
+                expression { params.envName == "prod" }
+            }
             steps{
                 echo "Deploy to prod"
             }
