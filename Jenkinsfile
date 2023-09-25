@@ -5,6 +5,9 @@ pipeline{
     }
     stages{
         stage("Maven Build"){
+            when {
+                expression { params.envName == "dev" }
+            }
             steps{
                sh "mvn clean package" 
             }
