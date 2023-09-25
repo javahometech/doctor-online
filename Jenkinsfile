@@ -1,7 +1,7 @@
 pipeline{
     agent any
     parameters {
-      choice choices: ['dev', 'test', 'prod'], description: 'Choose the environment to deploy', name: 'envNmae'
+      choice choices: ['dev', 'test', 'prod'], description: 'Choose the environment to deploy', name: 'envName'
     }
     stages{
         stage("Maven Build"){
@@ -9,16 +9,19 @@ pipeline{
                sh "mvn clean package" 
             }
         }
-        stage("Dev Deploy"){
+        stage("Deploy To Dev"){
             steps{
-                sshagent(['tomcat-dev']) {
-                    // COPY WAR FILE TO TOMCAT
-                    sh "scp -o StrictHostKeyChecking=no target/doctor-online.war ec2-user@172.31.13.20:/opt/tomcat9/webapps"
-                    // Stop tomcat
-                    sh "ssh ec2-user@172.31.13.20 /opt/tomcat9/bin/shutdown.sh"
-                    // start tomcat
-                    sh "ssh ec2-user@172.31.13.20 /opt/tomcat9/bin/startup.sh"
-                }
+                echo "Deploy to dev"
+            }
+        }
+        stage("Deploy To Test"){
+            steps{
+                echo "Deploy to test"
+            }
+        }
+        stage("Deploy To Prod"){
+            steps{
+                echo "Deploy to prod"
             }
         }
     }
