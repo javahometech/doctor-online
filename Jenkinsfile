@@ -13,6 +13,9 @@ pipeline{
             }
         }
         stage("Nexus Upload"){
+            when {
+                expression { params.envName == "dev" }
+            }
             steps{
                 script{
                     def pom = readMavenPom file: 'pom.xml'
