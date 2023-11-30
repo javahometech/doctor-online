@@ -1,5 +1,5 @@
 <html>
 <body>
-<h2>Java Home App - Jenkins Demo! Webhook</h2>
+<h2 style="colour: red">Java Home App</h2>
 </body>
 </html>
