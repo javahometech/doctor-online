@@ -4,11 +4,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Code Checkout') {
-            steps {
-                git branch: 'main', credentialsId: 'github', url: 'https://github.com/javahometech/doctor-online'
-            }
-        }
         stage('Maven Build') {
             steps {
                 sh 'mvn clean package'
