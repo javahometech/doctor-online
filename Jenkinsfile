@@ -10,8 +10,27 @@ pipeline {
             }
         }
         stage("Tomcat Dev Deploy"){
+            when {
+                branch 'develop'
+            }
             steps{
-                tomcatDeploy("172.31.30.174","ec2-user","tomcat-dev","doctor-online.war")
+                 echo "Deploying to dev"
+            }
+        }
+        stage("Tomcat Test Deploy"){
+            when {
+                branch 'test'
+            }
+            steps{
+                echo "Deploying to test"
+            }
+        }
+        stage("Tomcat Production Deploy"){
+            when {
+                branch 'main'
+            }
+            steps{
+                 echo "Deploying to prod"
             }
         }
     }
